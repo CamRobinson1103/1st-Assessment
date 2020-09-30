@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HelloWorld
+{
+    class Item
+    {
+        public string name;
+        public int cost;
+    }
+}
