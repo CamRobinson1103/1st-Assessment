@@ -49,7 +49,25 @@ namespace HelloWorld
             writer.WriteLine(_name);
         }
 
-
+        public virtual bool Load(StreamReader reader)
+        {
+            //Create variables to store loaded data.
+            string name = reader.ReadLine();
+            float damage = 0;
+            float health = 0;
+            //Checks to see if loading was successful.
+            if (float.TryParse(reader.ReadLine(), out health) == false)
+            {
+                return false;
+            }
+            if (float.TryParse(reader.ReadLine(), out damage) == false)
+            {
+                return false;
+            }
+            //If successful, set update the member variables and return true.
+            _name = name;
+            return true;
+        }
 
     }
 }

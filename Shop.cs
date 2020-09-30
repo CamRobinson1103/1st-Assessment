@@ -4,21 +4,20 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Shop
+    class Shop : Item
     {
-        private int _gold;
+        private int _dollars;
         private Item[] _inventory;
-        private string _name;
 
         public Shop()
         {
-            _gold = 100;
+            _dollars = 100;
             _inventory = new Item[3];
         }
 
         public Shop(Item[] items)
         {
-            _gold = 100;
+            _dollars = 100;
             //Set our inventory array to be the array of items that was passed in.
             _inventory = items;
         }
@@ -31,7 +30,7 @@ namespace HelloWorld
             if (player.Buy(itemToBuy, playerIndex))
             {
                 //Increase shops gold by item cost to complete the transaction
-                _gold += itemToBuy.cost;
+                _dollars += itemToBuy.cost;
                 return true;
             }
             return false;

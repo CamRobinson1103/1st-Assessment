@@ -29,14 +29,15 @@ namespace HelloWorld
             End();
         }
 
-        private void InitItems()
+        private void InitializeItems() 
+            //Initializing the items
         {
             _cinnamonRoll.name = "Cinnamon Roll";
-            _cinnamonRoll.cost = 10;
-            _ramen.name = "Ramen";
-            _ramen.cost = 15;
+            _cinnamonRoll.cost = 3;
+            _ramen.name = "Ramen Packs";
+            _ramen.cost = 3;
             _appleJuice.name = "Apple Juice";
-            _appleJuice.cost = 50;
+            _appleJuice.cost = 3;
         }
 
         public void PrintInventory(Item[] inventory)
@@ -84,7 +85,7 @@ namespace HelloWorld
             //If the player can't afford the item print a message to let them know
             if (_player.GetGold() < _shopInventory[itemIndex].cost)
             {
-                Console.WriteLine("You cant afford this.");
+                Console.WriteLine("AYE!! Stop being broke, loser!");
                 return;
             }
 
@@ -142,14 +143,14 @@ namespace HelloWorld
             //Close reader
             reader.Close();
         }
-
+            
 
         //Performed once when the game begins
         public void Start()
         {
             _gameOver = false;
             _player = new Player();
-            InitItems();
+            InitializeItems();
             _shopInventory = new Item[] { _cinnamonRoll, _ramen, _appleJuice };
             _shop = new Shop(_shopInventory);
         }
