@@ -7,13 +7,13 @@ namespace HelloWorld
 {
     class Player
     {
-        private int _gold;
+        private int _dollars;
         private Item[] _inventory;
         private string _name;
 
         public Player()
         {
-            _gold = 100;
+            _dollars = 100;
             //Creates a new item array with three items with default values
             _inventory = new Item[3];
         }
@@ -21,10 +21,10 @@ namespace HelloWorld
         public bool Buy(Item item, int inventoryIndex)
         {
             //Check to see if the player can afford the item
-            if (_gold >= item.cost)
+            if (_dollars >= item.price)
             {
                 //Pay for item.
-                _gold -= item.cost;
+                _dollars -= item.price;
                 //Place item in inventory array.
                 _inventory[inventoryIndex] = item;
                 return true;
@@ -33,9 +33,9 @@ namespace HelloWorld
             return false;
         }
 
-        public int GetGold()
+        public int GetDollars()
         {
-            return _gold;
+            return _dollars;
         }
 
         public Item[] GetInventory()

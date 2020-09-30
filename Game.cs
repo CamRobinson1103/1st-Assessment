@@ -5,8 +5,11 @@ using System.IO;
 
 namespace HelloWorld
 {
-    
-
+    struct Item
+    {
+        public string name;
+        public int price;
+    }
     class Game
     {
         private Player _player;
@@ -14,7 +17,7 @@ namespace HelloWorld
         private Item _cinnamonRoll;
         private Item _ramen;
         private Item _appleJuice;
-        private Item[] _shopInventory;
+        private Item[] _shoppingList;
         private bool _gameOver;
         //Run the game
         public void Run()
@@ -33,28 +36,28 @@ namespace HelloWorld
             //Initializing the items
         {
             _cinnamonRoll.name = "Cinnamon Roll";
-            _cinnamonRoll.cost = 3;
+            _cinnamonRoll.price = 3;
             _ramen.name = "Ramen Packs";
-            _ramen.cost = 3;
+            _ramen.price = 3;
             _appleJuice.name = "Apple Juice";
-            _appleJuice.cost = 3;
+            _appleJuice.price = 3;
         }
 
         public void PrintInventory(Item[] inventory)
         {
             for (int i = 0; i < inventory.Length; i++)
             {
-                Console.WriteLine((i + 1) + ". " + inventory[i].name + inventory[i].cost);
+                Console.WriteLine((i + 1) + ". " + inventory[i].name + inventory[i].price);
             }
         }
 
         private void OpenShopMenu()
         {
-            //Print a welcome message and all the choices to the screen
-            Console.WriteLine("Welcome! Please selct an item.");
-            PrintInventory(_shopInventory);
+            //Enters store and items you can purchase
+            Console.WriteLine("Welcome to the Grocery Garden!!.");
+            PrintInventory(_shoppingList);
 
-            //Get player input
+            //Player input
             char input = Console.ReadKey().KeyChar;
 
             //Set itemIndex to be the indec the player selected
@@ -82,20 +85,20 @@ namespace HelloWorld
                     }
             }
 
-            //If the player can't afford the item print a message to let them know
-            if (_player.GetGold() < _shopInventory[itemIndex].cost)
+            //Player cannot afford item
+            if (_player.GetDollars() < _shoppingList[itemIndex].price)
             {
                 Console.WriteLine("AYE!! Stop being broke, loser!");
                 return;
             }
 
-            //Ask the player to replace a slot in their own inventory
+            //Fills in a slot
             Console.WriteLine("Choose a slot to replace.");
             PrintInventory(_player.GetInventory());
             //Get player input
             input = Console.ReadKey().KeyChar;
 
-            //Set the value of the playerIndex based on the player's choice
+            //Value of Playerindex based on choice
             int playerIndex = -1;
             switch (input)
             {
@@ -120,7 +123,7 @@ namespace HelloWorld
                     }
             }
 
-            //Sell item to player and replace the weapon at the index with the newly purchased weapon
+            //Sell item ffor new item
             _shop.Sell(_player, itemIndex, playerIndex);
         }
 
@@ -151,8 +154,8 @@ namespace HelloWorld
             _gameOver = false;
             _player = new Player();
             InitializeItems();
-            _shopInventory = new Item[] { _cinnamonRoll, _ramen, _appleJuice };
-            _shop = new Shop(_shopInventory);
+            _shoppingList = new Item[] { _cinnamonRoll, _ramen, _appleJuice };
+            _shop = new Shop(_shoppingList);
         }
 
         //Repeated until the game ends
@@ -161,7 +164,7 @@ namespace HelloWorld
             OpenShopMenu();
         }
 
-        //Performed once when the game ends
+        //Game Over
         public void End()
         {
 

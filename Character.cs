@@ -4,9 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Item
+    class Character : Player
     {
-        public string name;
-        public int cost;
     }
 }

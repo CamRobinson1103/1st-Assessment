@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Shop : Item
+    class Shop 
     {
         private int _dollars;
         private Item[] _inventory;
@@ -29,8 +29,8 @@ namespace HelloWorld
             //Check to see if the player ourchased the item successfully.
             if (player.Buy(itemToBuy, playerIndex))
             {
-                //Increase shops gold by item cost to complete the transaction
-                _dollars += itemToBuy.cost;
+                //Increase shops dollaers by item cost to complete the pruchase
+                _dollars += itemToBuy.price;
                 return true;
             }
             return false;
