@@ -18,6 +18,9 @@ namespace HelloWorld
         private Item _ramen;
         private Item _appleJuice;
         private Item[] _shoppingList;
+        private Item _bleach;
+        private Item _cleaningSponge;
+        private Item _allPurposeCleaningSpray;
         private bool _gameOver;
         //Run the game
         public void Run()
@@ -41,6 +44,19 @@ namespace HelloWorld
             _ramen.price = 3;
             _appleJuice.name = "Apple Juice";
             _appleJuice.price = 3;
+
+            _bleach.name = "Bleach";
+            _bleach.price = 3;
+            _cleaningSponge.name = "Cleaning Sponge";
+            _cleaningSponge.price = 3;
+            _allPurposeCleaningSpray.name = "All-purpose Cleaning Spray";
+            _allPurposeCleaningSpray.price = 3;
+        }
+
+        private void ChoosingStore()
+        {
+            Console.WriteLine("You only have enough money to go to one store... Which is more important: food or cleanliness?");
+
         }
 
         public void PrintInventory(Item[] inventory)
@@ -60,7 +76,7 @@ namespace HelloWorld
             //Player input
             char input = Console.ReadKey().KeyChar;
 
-            //Set itemIndex to be the indec the player selected
+            //Set itemIndex to be the index the player selected
             int itemIndex = -1;
             switch (input)
             {
@@ -161,6 +177,7 @@ namespace HelloWorld
         //Repeated until the game ends
         public void Update()
         {
+            ChoosingStore();
             OpenShopMenu();
         }
 

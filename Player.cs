@@ -13,7 +13,7 @@ namespace HelloWorld
 
         public Player()
         {
-            _dollars = 100;
+            _dollars = 10;
             //Creates a new item array with three items with default values
             _inventory = new Item[3];
         }
