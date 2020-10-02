@@ -17,7 +17,7 @@ namespace HelloWorld
 
         public Shop(Item[] items)
         {
-            _dollars = 100;
+            _dollars = 10;
             //Set our inventory array to be the array of items that was passed in.
             _inventory = items;
         }

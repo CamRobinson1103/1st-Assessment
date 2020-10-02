@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Character : Player
+    class Character
     {
     }
 }

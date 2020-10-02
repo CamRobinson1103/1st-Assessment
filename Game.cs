@@ -9,6 +9,7 @@ namespace HelloWorld
     {
         public string name;
         public int price;
+        public int statBoost;
     }
     class Game
     {
@@ -17,10 +18,7 @@ namespace HelloWorld
         private Item _cinnamonRoll;
         private Item _ramen;
         private Item _appleJuice;
-        private Item[] _shoppingList;
-        private Item _bleach;
-        private Item _cleaningSponge;
-        private Item _allPurposeCleaningSpray;
+        private Item[] _groceryList;
         private bool _gameOver;
         //Run the game
         public void Run()
@@ -36,7 +34,7 @@ namespace HelloWorld
         }
 
         private void InitializeItems() 
-            //Initializing the items
+            //Initializing items
         {
             _cinnamonRoll.name = "Cinnamon Roll";
             _cinnamonRoll.price = 3;
@@ -44,19 +42,14 @@ namespace HelloWorld
             _ramen.price = 3;
             _appleJuice.name = "Apple Juice";
             _appleJuice.price = 3;
-
-            _bleach.name = "Bleach";
-            _bleach.price = 3;
-            _cleaningSponge.name = "Cleaning Sponge";
-            _cleaningSponge.price = 3;
-            _allPurposeCleaningSpray.name = "All-purpose Cleaning Spray";
-            _allPurposeCleaningSpray.price = 3;
         }
 
-        private void ChoosingStore()
+        public Player CreateCharacter()
         {
-            Console.WriteLine("You only have enough money to go to one store... Which is more important: food or cleanliness?");
-
+            Console.WriteLine("Wait.... What's my name again?");
+            string name = Console.ReadLine();
+            Player player = new Player(name, 100, 10, 3);
+            return player;
         }
 
         public void PrintInventory(Item[] inventory)
@@ -67,11 +60,11 @@ namespace HelloWorld
             }
         }
 
-        private void OpenShopMenu()
+        private void GroceryGarden()
         {
             //Enters store and items you can purchase
             Console.WriteLine("Welcome to the Grocery Garden!!.");
-            PrintInventory(_shoppingList);
+            PrintInventory(_groceryList);
 
             //Player input
             char input = Console.ReadKey().KeyChar;
@@ -102,14 +95,14 @@ namespace HelloWorld
             }
 
             //Player cannot afford item
-            if (_player.GetDollars() < _shoppingList[itemIndex].price)
+            if (_player.GetDollars() < _groceryList[itemIndex].price)
             {
-                Console.WriteLine("AYE!! Stop being broke, loser!");
+                Console.WriteLine("AYE!! Stop being broke!");
                 return;
             }
 
             //Fills in a slot
-            Console.WriteLine("Choose a slot to replace.");
+            Console.WriteLine("Where do you want it at?");
             PrintInventory(_player.GetInventory());
             //Get player input
             input = Console.ReadKey().KeyChar;
@@ -143,6 +136,10 @@ namespace HelloWorld
             _shop.Sell(_player, itemIndex, playerIndex);
         }
 
+
+
+
+
         public void Save()
         {
             //Create a new stream writer.
@@ -170,15 +167,15 @@ namespace HelloWorld
             _gameOver = false;
             _player = new Player();
             InitializeItems();
-            _shoppingList = new Item[] { _cinnamonRoll, _ramen, _appleJuice };
-            _shop = new Shop(_shoppingList);
+            _groceryList = new Item[] { _cinnamonRoll, _ramen, _appleJuice };
+            _shop = new Shop(_groceryList);
         }
 
         //Repeated until the game ends
         public void Update()
         {
-            ChoosingStore();
-            OpenShopMenu();
+            CreateCharacter();
+            GroceryGarden();
         }
 
         //Game Over

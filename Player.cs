@@ -9,14 +9,28 @@ namespace HelloWorld
     {
         private int _dollars;
         private Item[] _inventory;
+        private Item _hands;
         private string _name;
+        private float _health;
+        protected float _damage;
 
         public Player()
         {
             _dollars = 10;
             //Creates a new item array with three items with default values
             _inventory = new Item[3];
+            _hands.name = "These hands";
+            _hands.statBoost = 0;
         }
+
+        public Player(string nameVal, float healthVal, float damageVal, int inventorySize)
+            
+        {
+            _inventory = new Item[inventorySize];
+            _hands.name = "These hands";
+            _hands.statBoost = 0;
+        }
+
 
         public bool Buy(Item item, int inventoryIndex)
         {
@@ -53,19 +67,6 @@ namespace HelloWorld
         {
             //Create variables to store loaded data.
             string name = reader.ReadLine();
-            float damage = 0;
-            float health = 0;
-            //Checks to see if loading was successful.
-            if (float.TryParse(reader.ReadLine(), out health) == false)
-            {
-                return false;
-            }
-            if (float.TryParse(reader.ReadLine(), out damage) == false)
-            {
-                return false;
-            }
-            //If successful, set update the member variables and return true.
-            _name = name;
             return true;
         }
 
