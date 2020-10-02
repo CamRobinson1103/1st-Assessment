@@ -44,12 +44,36 @@ namespace HelloWorld
             _appleJuice.price = 3;
         }
 
+         public void GetInput(out char input, string option1, string option2, string option3, string query)
+        {
+            //Print description to console
+            Console.WriteLine(query);
+            //print options to console
+            Console.WriteLine("1." + option1);
+            Console.WriteLine("2." + option2);
+            Console.WriteLine("3." + option3);
+            Console.Write("> ");
+
+            input = ' ';
+            //loop until valid input is received
+            while (input != '1' && input != '2' && input != '3')
+            {
+                input = Console.ReadKey().KeyChar;
+                if (input != '1' && input != '2' && input != '3')
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+            }
+        }
+
+
         public Player CreateCharacter()
         {
             Console.WriteLine("Wait.... What's my name again?");
             string name = Console.ReadLine();
             Player player = new Player(name, 100, 10, 3);
             return player;
+            
         }
 
         public void PrintInventory(Item[] inventory)

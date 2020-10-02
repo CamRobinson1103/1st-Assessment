@@ -19,8 +19,6 @@ namespace HelloWorld
             _dollars = 10;
             //Creates a new item array with three items with default values
             _inventory = new Item[3];
-            _hands.name = "These hands";
-            _hands.statBoost = 0;
         }
 
         public Player(string nameVal, float healthVal, float damageVal, int inventorySize)
